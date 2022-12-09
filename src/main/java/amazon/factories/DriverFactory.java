@@ -2,14 +2,15 @@ package amazon.factories;
 
 import amazon.choices.Browser;
 import amazon.choices.Host;
-import amazon.config.EnvFactory;
 import com.typesafe.config.Config;
+import amazon.config.EnvFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 @Slf4j
@@ -40,19 +41,17 @@ public class DriverFactory {
         log.info("Getting driver for browser: {}", BROWSER);
         switch (BROWSER) {
             case CHROME:
-                return WebDriverManager.chromedriver()
-                        .capabilities(CapabilitiesFactory.getChromeOptions())
-                        .create();
-//                return new ChromeDriver(CapabilitiesFactory.getChromeOptions());
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver(CapabilitiesFactory.getChromeOptions());
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver(CapabilitiesFactory.getFirefoxOptions());
             case EDGE:
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
-//            case OPERA:
-//                WebDriverManager.operadriver().setup();
-//                return new OperaDriver();
+            case OPERA:
+                WebDriverManager.operadriver().setup();
+                return new OperaDriver();
             default:
                 throw new IllegalStateException(String.format("%s is not a valid browser choice. Pick your browser from %s.", BROWSER, java.util.Arrays.asList(BROWSER.values())));
         }
