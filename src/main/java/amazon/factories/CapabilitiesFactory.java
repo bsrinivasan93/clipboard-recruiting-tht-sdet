@@ -10,7 +10,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.opera.OperaOptions;
+//import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.remote.CapabilityType;
 
 import java.util.Hashtable;
@@ -33,8 +33,8 @@ public class CapabilitiesFactory {
                 return getChromeOptions();
             case FIREFOX:
                 return getFirefoxOptions();
-            case OPERA:
-                return getOperaOptions();
+//            case OPERA:
+//                return getOperaOptions();
             case EDGE:
                 return getEdgeOptions();
             default:
@@ -74,9 +74,9 @@ public class CapabilitiesFactory {
         return firefoxOptions;
     }
 
-    public static OperaOptions getOperaOptions() {
-        return new OperaOptions();
-    }
+//    public static OperaOptions getOperaOptions() {
+//        return new OperaOptions();
+//    }
 
     public static EdgeOptions getEdgeOptions() {
         return new EdgeOptions();
