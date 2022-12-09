@@ -2,14 +2,12 @@ package amazon.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.NoSuchElementException;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.and;
-import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfElementsToBeMoreThan;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
@@ -21,8 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 public class Header extends BasePage {
     By sectionLocator = By.id("navbar");
 
-    public Header(WebDriver driver) {
-        super(driver);
+    public Header() {
         wait = new WebDriverWait(driver, NORMAL_WEBDRIVERWAIT_TIMEOUT_IN_DURATION);
 
         wait.until(visibilityOfElementLocated(sectionLocator));
@@ -56,8 +53,9 @@ public class Header extends BasePage {
      * Performs two levels of category navigation from the side-menu
      * @param l1CategoryName name of the first category
      * @param l2CategoryName name of the second category
+     * @return the {@link ProductCategoryPage} navigated to
      */
-    public void performCategoryNavigationFromSideMenu(String l1CategoryName, String l2CategoryName) {
+    public ProductCategoryPage performCategoryNavigationFromSideMenu(String l1CategoryName, String l2CategoryName) {
         click(sideMenuIcon);
         wait.until(and(visibilityOfElementLocated(sideBar),
                 numberOfElementsToBeMoreThan(sideBarLinks, 0)));
@@ -66,7 +64,7 @@ public class Header extends BasePage {
         wait.until(visibilityOfElementLocated(sideBarBackLink));
         filterAndClickCategoryLink(l2CategoryName);
 
-        wait.until(invisibilityOfElementLocated(sideBar));
+        return new ProductCategoryPage();
     }
 
 }

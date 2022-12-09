@@ -1,6 +1,7 @@
 package amazon.pages;
 
 import amazon.config.EnvFactory;
+import amazon.factories.DriverFactory;
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -19,14 +20,26 @@ import java.util.List;
 public class BasePage {
     protected static Config config = EnvFactory.getInstance().getConfig();
 
-    private WebDriver driver;
-
+    protected static WebDriver driver = DriverFactory.getDriver();
     protected WebDriverWait wait;
 
     protected final Duration NORMAL_WEBDRIVERWAIT_TIMEOUT_IN_DURATION = Duration.ofSeconds(20);
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
+    public BasePage() {}
+
+    /**
+     * Navigates the browser to the URL
+     * @param url url
+     */
+    public static void navigateToUrl(String url) {
+         driver.get(url);
+    }
+
+    /**
+     * Tears down the driver session
+     */
+    public static void teardownDriver() {
+        driver.quit();
     }
 
     /**

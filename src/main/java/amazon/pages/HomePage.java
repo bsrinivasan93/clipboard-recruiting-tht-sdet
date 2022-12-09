@@ -2,7 +2,6 @@ package amazon.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
@@ -16,9 +15,8 @@ public class HomePage extends BasePage {
     By pageContentLocator = By.id("pageContent");
     public Header header;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-        header = new Header(driver);
+    public HomePage() {
+        header = new Header();
         wait = new WebDriverWait(driver, NORMAL_WEBDRIVERWAIT_TIMEOUT_IN_DURATION);
 
         wait.until(//and(titleIs(HOME_PAGE_TITLE), -> commented cos page title keeps changing
