@@ -21,6 +21,7 @@ public class TestPageNavigation {
     void assertPageNavigation() {
         driver.get(HOME_PAGE_URL);
         HomePage homePage = new HomePage(driver);
+        homePage.header.performCategoryNavigationFromSideMenu("TV, Appliances, Electronics","Televisions");
     }
 
     @AfterEach
