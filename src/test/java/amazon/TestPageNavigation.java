@@ -48,7 +48,7 @@ public class TestPageNavigation {
     }
 
     @AfterAll
-    void tearDown() {
+    static void tearDown() {
         //ideally should happen in the TestNG's @AfterSuite method equivalent in Junit
         BasePage.teardownDriver();
     }
