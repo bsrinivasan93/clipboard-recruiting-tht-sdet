@@ -45,7 +45,7 @@ public class Header extends BasePage {
 
             click(categoryLink);
         } catch (NoSuchElementException e) {
-            log.error("invalid argument: " + e.getMessage());
+            throw new IllegalArgumentException(String.format("\ninvalid argument: category name %s exception %s", categoryName, e.getMessage()));
         }
     }
 

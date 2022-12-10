@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -74,5 +75,13 @@ public class BasePage {
      */
     protected void click(By locator) {
         click(elementBy(locator));
+    }
+
+    /**
+     * Scrolls an element into viewport
+     * @param element the {@link WebElement}
+     */
+    protected void scrollToElement(WebElement element) {
+        new Actions(driver).moveToElement(element).perform();
     }
 }
