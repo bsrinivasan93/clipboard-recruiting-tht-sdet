@@ -43,8 +43,9 @@ public class ProductCategoryPage extends BasePage {
      * Finds the filter by name & clicks on the option by name
      * @param filterName section name of filter
      * @param optionName name of option
+     * @return the {@link ProductSearchResultsPage}
      */
-    public void filterByOption(String filterName, String optionName) {
+    public ProductSearchResultsPage filterByOption(String filterName, String optionName) {
         try {
             WebElement filterSection = elementsBy(filterSections)
                     .stream()
@@ -63,5 +64,7 @@ public class ProductCategoryPage extends BasePage {
         } catch (NoSuchElementException e) {
             throw new IllegalArgumentException(String.format("\ninvalid arguments: filterName %s optionName %s exception %s", filterName, optionName, e.getMessage()));
         }
+
+        return new ProductSearchResultsPage();
     }
 }

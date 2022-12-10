@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -83,5 +84,15 @@ public class BasePage {
      */
     protected void scrollToElement(WebElement element) {
         new Actions(driver).moveToElement(element).perform();
+    }
+
+    /**
+     * Selects an option by text from a dropdown element
+     * @param element select tag element
+     * @param option option to select
+     */
+    protected void selectByText(WebElement element, String option) {
+        Select select = new Select(element);
+        select.selectByVisibleText(option);
     }
 }
