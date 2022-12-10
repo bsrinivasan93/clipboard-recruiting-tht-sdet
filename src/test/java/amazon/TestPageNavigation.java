@@ -1,4 +1,4 @@
-package tests;
+package amazon;
 
 import amazon.config.EnvFactory;
 import amazon.pages.BasePage;
@@ -8,7 +8,7 @@ import amazon.pages.ProductDescriptionPage;
 import amazon.pages.ProductSearchResultsPage;
 import com.typesafe.config.Config;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -47,8 +47,9 @@ public class TestPageNavigation {
         log.info("About the Item section contents: " + productDescriptionPage.getAboutItemSectionContent());
     }
 
-    @AfterEach
+    @AfterAll
     void tearDown() {
+        //ideally should happen in the TestNG's @AfterSuite method equivalent in Junit
         BasePage.teardownDriver();
     }
 }

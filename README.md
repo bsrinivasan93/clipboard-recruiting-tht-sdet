@@ -19,10 +19,18 @@ For this project to run, you would need to install below 3 dependencies on your 
 > will not run. Also, do remember to set the correct JDK settings in your IDE.
 
 ## Getting Started
+The code is organized into the following packages:
 
-For easiest way to getting started, extract this project and open it from IntelliJ.
-> Then Do a dry run on test in : test -> java -> TestSandbox class and see if your setup is correct.  
+`src/main/java/amazon/pages`: Page classes representing different pages/components of Amazon. `BasePage` is the helper class performing the driver actions like click, findElement, etc.
 
-Tip: Do remember to update this readme file for anything else that you think needs updating here!
+`test/java/amazon`: Test class for the Amazon test
 
-## Success
+## Running the test
+There are two ways to run the test:
+
+### From IDE
+Open the project & navigate to the `TestPageNavigation` class. Right-click the `assertPageNavigation` test method and select `Run` option. It takes a few seconds to start the test run
+
+### From Terminal
+Open Terminal, navigate the project root. Assuming the above dependencies are installed, run the below command to run the test:
+`mvn test -Dgroups=amazonTest`
