@@ -20,6 +20,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class TestPageNavigation {
     private static Config config = EnvFactory.getInstance().getConfig();
     private static final String HOME_PAGE_URL = config.getString("HOME_PAGE_URL");
+    private static final String AMAZON_L1CATEGORY_NAME = config.getString("AMAZON_L1CATEGORY_NAME");
+    private static final String AMAZON_L2CATEGORY_NAME = config.getString("AMAZON_L2CATEGORY_NAME");
+    private static final String AMAZON_FILTER_NAME = config.getString("AMAZON_FILTER_NAME");
+    private static final String AMAZON_FILTER_OPTION_NAME = config.getString("AMAZON_FILTER_OPTION_NAME");
+    private static final String AMAZON_SORT_OPTION = config.getString("AMAZON_SORT_OPTION");
 
     HomePage homePage;
     ProductCategoryPage productCategoryPage;
@@ -33,10 +38,10 @@ public class TestPageNavigation {
         BasePage.navigateToUrl(HOME_PAGE_URL);
         homePage = new HomePage();
         productCategoryPage =
-                homePage.header.performCategoryNavigationFromSideMenu("TV, Appliances, Electronics","Televisions");
-        assertEquals("Televisions", productCategoryPage.getHighlightedCategoryName(), "unexpected highlighted category name");
-        productSearchResultsPage = productCategoryPage.filterByOption("Brands", "Samsung");
-        productSearchResultsPage.sortByText("Price: Low to High");
+                homePage.header.performCategoryNavigationFromSideMenu(AMAZON_L1CATEGORY_NAME, AMAZON_L2CATEGORY_NAME);
+        assertEquals(AMAZON_L2CATEGORY_NAME, productCategoryPage.getHighlightedCategoryName(), "unexpected highlighted category name");
+        productSearchResultsPage = productCategoryPage.filterByOption(AMAZON_FILTER_NAME, AMAZON_FILTER_OPTION_NAME);
+        productSearchResultsPage.sortByText(AMAZON_SORT_OPTION);
         productDescriptionPage = productSearchResultsPage.clickOnSearchResult(1);
         assertTrue(productDescriptionPage.isAboutItemSectionPresent(), "About the Item section not present");
         log.info("About the Item section contents: " + productDescriptionPage.getAboutItemSectionContent());
