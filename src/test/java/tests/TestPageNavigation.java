@@ -32,6 +32,7 @@ public class TestPageNavigation {
         assertEquals("Televisions", productCategoryPage.getHighlightedCategoryName(), "unexpected highlighted category name");
         productSearchResultsPage = productCategoryPage.filterByOption("Brands", "Samsung");
         productSearchResultsPage.sortByText("Price: Low to High");
+        productSearchResultsPage.clickOnSearchResult(1);
     }
 
     @AfterEach

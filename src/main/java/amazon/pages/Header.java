@@ -66,5 +66,4 @@ public class Header extends BasePage {
 
         return new ProductCategoryPage();
     }
-
 }
