@@ -40,12 +40,15 @@ public class ProductSearchResultsPage extends BasePage {
     /**
      * clicks on search result at index
      * @param index the index
+     * @return the {@link ProductDescriptionPage} for the result
      */
-    public void clickOnSearchResult(int index) {
+    public ProductDescriptionPage clickOnSearchResult(int index) {
         List<WebElement> searchResults = elementsBy(searchResultsLocator);
         if(index >= searchResults.size())
             throw new IllegalArgumentException(String.format("invalid index %d for size %d", index, searchResults.size()));
 
         click(searchResults.get(index));
+        switchToNewWindow();
+        return new ProductDescriptionPage();
     }
 }

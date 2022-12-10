@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsToBe;
+
 /**
  * Base class for all page classes.
  * Helper class for common driver-operations(click, type, etc.)
@@ -44,6 +46,15 @@ public class BasePage {
         driver.quit();
     }
 
+    /**
+     * Checks if element by locator is present in DOM
+     * @param locator {@link By} locator
+     * @return true if present, false if not
+     */
+    public boolean isElementPresent(By locator) {
+        return elementsBy(locator).size() > 0;
+
+    }
     /**
      * Find web element identified by locator
      * @param locator {@link By} locator
@@ -94,5 +105,14 @@ public class BasePage {
     protected void selectByText(WebElement element, String option) {
         Select select = new Select(element);
         select.selectByVisibleText(option);
+    }
+
+    /**
+     * Waits for a new window to open & switches context to it
+     */
+    protected void switchToNewWindow() {
+        wait.until(numberOfWindowsToBe(2));
+        for(String handle: driver.getWindowHandles())
+            driver.switchTo().window(handle);
     }
 }
